@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQD2_DVH", "EQD2_DVH\EQD2_DVH.csproj", "{2A963CD1-C42C-4F75-9E25-788C277C483D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Debug|x64.ActiveCfg = Release|x64
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Debug|x64.Build.0 = Release|x64
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Release|x64.ActiveCfg = Release|x64
+		{2A963CD1-C42C-4F75-9E25-788C277C483D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21A269D0-2630-435F-8BA3-62455DAFA3AB}
+	EndGlobalSection
+EndGlobal

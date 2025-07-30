@@ -1,0 +1,45 @@
+﻿<Window x:Class="EQD2_DVH.SelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Valitse suunnitelma ja rakenteet" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFE0E0E0">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="1. Valitse hoitosuunnitelma:" FontWeight="Bold"/>
+        <ComboBox Grid.Row="1" ItemsSource="{Binding Plans}"
+                  SelectedItem="{Binding SelectedPlan}"
+                  DisplayMemberPath="Id" Margin="0,5,0,15"/>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="2. Valitse rakenteet:" FontWeight="Bold"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Structures}" SelectionMode="Multiple"
+                     x:Name="StructureListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Id}"
+                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="Piirrä DVH" Width="100" Height="30" Margin="0,0,10,0" IsDefault="True"
+                    Click="Accept_Click" IsEnabled="{Binding CanSelect}"/>
+            <Button Content="Peruuta" Width="100" Height="30" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

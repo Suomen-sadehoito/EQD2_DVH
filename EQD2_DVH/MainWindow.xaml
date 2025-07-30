@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="EQD2_DVH.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:oxy="http://oxyplot.org/wpf" xmlns:local="clr-namespace:EQD2_DVH" Title="EQD2 DVH Laskenta" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="280" />
+      <ColumnDefinition Width="5" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Border Grid.Column="0" Background="#FFF0F0F0" Padding="10">
+      <StackPanel>
+        <TextBlock Text="Asetukset" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+        <GroupBox Header="Alpha/Beta Asetukset" Margin="0,0,0,10">
+          <StackPanel>
+            <TextBlock Text="Muokkaa arvoja ja paina 'Laske EQD2'." TextWrapping="Wrap" Margin="0,5,0,10" />
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10" MaxHeight="250" HeadersVisibility="Column" GridLinesVisibility="Horizontal" ItemsSource="{Binding StructureSettings}">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Rakenne" IsReadOnly="True" Width="*" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Tyyppi" IsReadOnly="True" Width="Auto" Binding="{Binding DicomType}" />
+                <DataGridTextColumn Header="α/β" Width="Auto" Binding="{Binding AlphaBeta, UpdateSourceTrigger=PropertyChanged}" />
+              </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Laske EQD2" Command="{Binding CalculateEQD2Command}" />
+          </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Kuvaajan asetukset" Margin="0,0,0,10">
+          <StackPanel>
+            <CheckBox Content="Näytä alkuperäinen DVH" IsChecked="{Binding ShowOriginalDVH}" />
+            <CheckBox Content="Näytä EQD2 DVH" IsChecked="{Binding ShowEQD2DVH}" />
+          </StackPanel>
+        </GroupBox>
+        <Button Content="Lisää rakenteita..." Margin="0,20,0,5" Command="{Binding AddStructuresCommand}" />
+        <Button Content="Asetukset..." Margin="0,10,0,5" Command="{Binding ShowSettingsCommand}" />
+        <Button Content="Tyhjennä ja aloita alusta" Command="{Binding ClearPlotCommand}" />
+        <Button Content="Vie yhteenveto CSV" Margin="0,5,0,0" Command="{Binding ExportCSVCommand}" />
+      </StackPanel>
+    </Border>
+    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="#FFD3D3D3" />
+    <Grid Column="2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="200" />
+      </Grid.RowDefinitions>
+      <wpf:PlotView Grid.Row="0" FrameworkElement.Margin="5" xmlns:wpf="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf" oxy:PlotViewBase.Model="{Binding PlotModel}" />
+      <TextBlock Grid.Row="1" Text="Yhteenveto" FontWeight="Bold" Margin="5,10,5,5" />
+      <DataGrid Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" Margin="5,0,5,5" ItemsSource="{Binding SummaryData}">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Rakenne" Width="*" Binding="{Binding StructureId}" />
+          <DataGridTextColumn Header="Suunnitelma" Width="*" Binding="{Binding PlanId}" />
+          <DataGridTextColumn Header="Tyyppi" Width="Auto" Binding="{Binding Type}" />
+          <DataGridTextColumn Header="Dmax (Gy)" Width="Auto" Binding="{Binding DMax, StringFormat=F2}" />
+          <DataGridTextColumn Header="Dmean (Gy)" Width="Auto" Binding="{Binding DMean, StringFormat=F2}" />
+          <DataGridTextColumn Header="Dmin (Gy)" Width="Auto" Binding="{Binding DMin, StringFormat=F2}" />
+          <DataGridTextColumn Header="Tilavuus (cm³)" Width="Auto" Binding="{Binding Volume, StringFormat=F2}" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
+  </Grid>
+</Window>
