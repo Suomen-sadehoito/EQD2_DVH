@@ -16,7 +16,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 
 ### Asennus
 
-1.  **Käännä projekti:** Käännä ratkaisu Visual Studiossa (**Build > Build Solution**). Varmista, että projektin asetuksissa **Platform target** on asetettu `x64`-arkkitehtuurille.
+1.  **Käännä projekti:** Käännä "Solution" Visual Studiossa (**Build > Build Solution**). Varmista, että projektin asetuksissa **Platform target** on asetettu `x64`-arkkitehtuurille.
 2.  **Kopioi tiedostot:** Kääntämisen jälkeen kopioi seuraavat tiedostot projektin `bin/x64/Debug` (tai `Release`) -kansiosta Eclipsen skriptihakemistoon:
     * `EQD2_DVH.esapi`
     * `OxyPlot.dll`
