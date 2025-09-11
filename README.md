@@ -28,7 +28,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 ### Suorittaminen
 
 1.  **Avaa potilas:** Käynnistä Eclipse ja avaa potilas, jolla on vähintään yksi laskettu hoitosuunnitelma.
-2.  **Käynnistä skripti:** Mene Eclipsessä kohtaan **Tools > Scripts** ja valitse `EQD2_DVH.esapi`-tiedosto listasta käynnistääksesi skriptin.
+2.  **Käynnistä skripti:** Mene Eclipsessä kohtaan **Tools > Scripts** ja valitse `EQD2_DVH.esapi.dll`-tiedosto listasta käynnistääksesi skriptin.
 3.  **Valitse suunnitelma ja rakenteet:**
     * Skriptin käynnistyttyä avautuu valintaikkuna.
     * Valitse pudotusvalikosta hoitosuunnitelma.
