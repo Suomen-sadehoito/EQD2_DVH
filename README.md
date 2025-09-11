@@ -7,7 +7,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 * **DVH-käyrien visualisointi:** Piirtää sekä alkuperäisen annoksen DVH-käyrän että lasketun EQD2 DVH-käyrän samaan kuvaajaan.
 * **Muokattavat α/β-arvot:** Käyttäjä voi asettaa ja muokata kunkin rakenteen alfa/beeta-suhdetta. Oletusarvot asetetaan automaattisesti yleisimpien kudostyyppien mukaan.
 * **Yksityiskohtainen yhteenveto:** Tarjoaa taulukon, jossa näkyvät tärkeimmät DVH-parametrit (Dmax, Dmean, Dmin, tilavuus) sekä alkuperäiselle että EQD2-annokselle.
-* **Kaksi laskentatapaa D.mean-arvolle:** Oletuksena käytössä on tarkempi Differentiaali-DVH -menetelmä.
+* **Kaksi laskentatapaa D.mean-arvolle:** Oletuksena käytössä on epätarkempi "Yksinkertainen" laskentatapa.
     * **Yksinkertainen:** Muuntaa suoraan alkuperäisen suoraan keskiarvoannoksen EQD2-arvoksi.
     * **Differentiaali-DVH (Oletus):** Laskee painotetun keskiarvon differentiaalisesta DVH-käyrästä, mikä antaa tarkemman keskiarvoannoksen.
 * **CSV-vienti:** Kaikki yhteenvetotiedot voidaan viedä CSV-tiedostoon.
