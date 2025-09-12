@@ -58,6 +58,9 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 * **Arkkitehtuuri:** Sovellus noudattaa MVVM (Model-View-ViewModel) -suunnittelumallia, mikä erottaa käyttöliittymän (View) sovelluslogiikasta (ViewModel).
     * `MainViewModel.cs`: Sisältää pääikkunan toiminnallisuuden, kuten datan hallinnan ja komentojen toteutuksen.
     * `DVHCalculator.cs`: Sisältää staattiset metodit EQD2-arvojen laskemiseksi sekä pistekohtaisesti että koko DVH-käyrälle.
+ 
+## Tekijät:
+* Juho Ala-Myllymäki ja Risto Hirvilammi Vaasan keskussairaala
 
 ## Lisenssi
 
