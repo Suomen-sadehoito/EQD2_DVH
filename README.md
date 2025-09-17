@@ -23,7 +23,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
     * `OxyPlot.Wpf.dll`
     * `OxyPlot.Wpf.Shared.dll`
 
-    Voit löytää oikean skriptihakemiston Eclipsestä valitsemalla **Tools > Scripts** ja klikkaamalla **Open Folder** -painiketta.
+    Voit löytää oikean skriptihakemiston Eclipsestä valitsemalla **Tools > Scripts** ja klikkaamalla **Change Folder...** -painiketta.
 
 ### Suorittaminen
 
