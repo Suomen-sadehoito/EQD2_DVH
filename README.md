@@ -9,7 +9,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 * **Yksityiskohtainen yhteenveto:** Tarjoaa taulukon, jossa näkyvät tärkeimmät DVH-parametrit (Dmax, Dmean, Dmin, tilavuus) sekä alkuperäiselle että EQD2-annokselle.
 * **Kaksi laskentatapaa D.mean-arvolle:** Oletuksena käytössä on epätarkempi "Yksinkertainen" laskentatapa.
     * **Yksinkertainen (Oletus):** Muuntaa suoraan alkuperäisen suoraan keskiarvoannoksen EQD2-arvoksi.
-    * **Differentiaali-DVH:** EQD2 lasketaan jakamalla alkuperäinen DVH "bineihin", joista lasketaan painotettu keskiarvo.
+    * **Differentiaali-DVH:** EQD2 lasketaan jakamalla alkuperäinen DVH "bineihin", joista lasketaan painotettu keskiarvo. Hyötyä eniten epätasaisella annosjakaumalla.
 * **CSV-vienti:** Kaikki yhteenvetotiedot voidaan viedä CSV-tiedostoon.
 
 ## Käyttöohjeet
