@@ -57,7 +57,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
     * **OxyPlot:** Avoimen lähdekoodin kirjasto, jota käytetään DVH-käyrien piirtämiseen ja visualisointiin.
 * **Arkkitehtuuri:** Sovellus noudattaa MVVM (Model-View-ViewModel) -suunnittelumallia, mikä erottaa käyttöliittymän (View) sovelluslogiikasta (ViewModel).
     * `MainViewModel.cs`: Sisältää pääikkunan toiminnallisuuden, kuten datan hallinnan ja komentojen toteutuksen.
-    * `DVHCalculator.cs`: Sisältää staattiset metodit EQD2-arvojen laskemiseksi sekä pistekohtaisesti että koko DVH-käyrälle.
+    * `DVHCalculator.cs`: Sisältää metodit EQD2-arvojen laskemiseksi sekä pistekohtaisesti että koko DVH-käyrälle.
  
 ## Tekijät:
 * Juho Ala-Myllymäki ja Risto Hirvilammi Vaasan keskussairaala
