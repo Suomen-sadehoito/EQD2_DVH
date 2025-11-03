@@ -14,7 +14,7 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 
 ## Käyttöohjeet
 
-### Asennus (Loppukäyttäjälle)
+### Asennus
 
 Tämän skriptin käyttöönotto vaatii vain **yhden tiedoston** kopioimista.
 
@@ -42,14 +42,14 @@ Tämän skriptin käyttöönotto vaatii vain **yhden tiedoston** kopioimista.
     * **Vie yhteenveto CSV:** Tallentaa kaikki yhteenvetotaulukon tiedot CSV-tiedostoon.
     * **Tyhjennä ja aloita alusta:** Nollaa koko näkymän ja avaa uudelleen suunnitelman ja rakenteiden valintaikkunan.
 
-## Kehittäjälle (Kääntämisohjeet)
+## Kehittäjälle
 
 Projekti on konfiguroitu niin, että se paketoi kaikki riippuvuudet (kuten OxyPlot) automaattisesti yhdeksi `EQD2_DVH.esapi.dll`-tiedostoksi käyttäen `Costura.Fody`-pakettia.
 
 Jotta voit kääntää projektin, sinun on hankittava Varianin ESAPI-kirjastot:
 
 1.  **Luo kansio:** Luo projektin `EQD2_DVH`-kansion sisään (samalle tasolle kuin `EQD2_DVH.csproj`-tiedosto) kansio nimeltä `ESAPI_Libs`.
-2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi (tai MyVarianista) seuraavat tiedostot tähän `ESAPI_Libs`-kansioon:
+2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi seuraavat tiedostot tähän `ESAPI_Libs`-kansioon:
     * `VMS.TPS.Common.Model.API.dll`
     * `VMS.TPS.Common.Model.Types.dll`
 3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä ratkaisu (**Build > Build Solution**) `Release | x64` -asetuksilla.
