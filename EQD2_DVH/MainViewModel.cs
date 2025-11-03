@@ -28,7 +28,7 @@ namespace EQD2_DVH
         public PlotModel PlotModel { get; private set; }
         public ObservableCollection<DVHSummary> SummaryData { get; } = new ObservableCollection<DVHSummary>();
         public ObservableCollection<StructureAlphaBetaViewModel> StructureSettings { get; } = new ObservableCollection<StructureAlphaBetaViewModel>();
-        public bool HasData { get; private set; }
+        public bool HasData { get; private set; } // Tämä on nyt aina 'true'
 
         public bool ShowOriginalDVH
         {
@@ -50,7 +50,8 @@ namespace EQD2_DVH
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainViewModel(ScriptContext context)
+        // KORJAUS: Tämä konstruktori vastaanottaa datan suoraan.
+        public MainViewModel(PlanSetup plan, IEnumerable<Structure> structures, ScriptContext context)
         {
             _context = context;
             InitializePlotModel();
@@ -59,7 +60,10 @@ namespace EQD2_DVH
             AddStructuresCommand = new RelayCommand(ShowSelectionWindow);
             ExportCSVCommand = new RelayCommand(ExportToCSV, () => SummaryData.Any());
             ShowSettingsCommand = new RelayCommand(ShowSettingsWindow);
-            ShowSelectionWindow();
+
+            // Data ladataan TÄSSÄ, eikä ShowSelectionWindow-metodissa.
+            HasData = true; // Oletamme, että dataa on, koska pääsimme tänne
+            PlotDVH(plan, structures);
         }
 
         private void InitializePlotModel()
@@ -83,12 +87,12 @@ namespace EQD2_DVH
             }
         }
 
+        // Tämä metodi KUTSUU nyt valintaikkunan "Lisää rakenteita..." -napista.
         private void ShowSelectionWindow()
         {
             var selectionWindow = new SelectionWindow(_context);
             if (selectionWindow.ShowDialog() == true)
             {
-                HasData = true;
                 PlotDVH(selectionWindow.SelectedPlan, selectionWindow.SelectedStructures);
             }
         }
@@ -154,11 +158,14 @@ namespace EQD2_DVH
 
         private void ClearAndRestart()
         {
+            // Tyhjennetään nykyiset tiedot
             _originalDvhCache.Clear();
             StructureSettings.Clear();
             PlotModel.Series.Clear();
             SummaryData.Clear();
             RefreshPlot();
+
+            // Avataan valintaikkuna uudelleen "Lisää rakenteita..." -napin toiminnallisuudella
             ShowSelectionWindow();
         }
 

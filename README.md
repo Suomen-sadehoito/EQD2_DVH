@@ -7,23 +7,21 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
 * **DVH-käyrien visualisointi:** Piirtää sekä alkuperäisen annoksen DVH-käyrän että lasketun EQD2 DVH-käyrän samaan kuvaajaan.
 * **Muokattavat α/β-arvot:** Käyttäjä voi asettaa ja muokata kunkin rakenteen alfa/beeta-suhdetta. Oletusarvot asetetaan automaattisesti yleisimpien kudostyyppien mukaan.
 * **Yksityiskohtainen yhteenveto:** Tarjoaa taulukon, jossa näkyvät tärkeimmät DVH-parametrit (Dmax, Dmean, Dmin, tilavuus) sekä alkuperäiselle että EQD2-annokselle.
-* **Kaksi laskentatapaa D.mean-arvolle:** Oletuksena käytössä on epätarkempi "Yksinkertainen" laskentatapa.
+* **Kaksi laskentatapaa D.mean-arvolle:**
     * **Yksinkertainen (Oletus):** Muuntaa alkuperäisen D.mean annoksen suoraaan EQD2-arvoksi.
     * **Differentiaali-DVH:** EQD2 lasketaan jakamalla alkuperäinen DVH "bineihin", joista lasketaan painotettu keskiarvo. Hyötyä eniten epätasaisella annosjakaumalla.
 * **CSV-vienti:** Kaikki yhteenvetotiedot voidaan viedä CSV-tiedostoon.
 
 ## Käyttöohjeet
 
-### Asennus
+### Asennus (Loppukäyttäjälle)
 
-1.  **Käännä projekti:** Käännä "Solution" Visual Studiossa (**Build > Build Solution**). Varmista, että projektin asetuksissa **Platform target** on asetettu `x64`-arkkitehtuurille.
-2.  **Kopioi tiedostot:** Kääntämisen jälkeen kopioi seuraavat tiedostot projektin `bin/x64/Debug` (tai `Release`) -kansiosta Eclipsen skriptihakemistoon:
-    * `EQD2_DVH.esapi`
-    * `OxyPlot.dll`
-    * `OxyPlot.Wpf.dll`
-    * `OxyPlot.Wpf.Shared.dll`
+Tämän skriptin käyttöönotto vaatii vain **yhden tiedoston** kopioimista.
 
-    Voit löytää oikean skriptihakemiston Eclipsestä valitsemalla **Tools > Scripts** ja klikkaamalla **Change Folder...** -painiketta.
+1.  Lataa uusin `EQD2_DVH.esapi.dll` -tiedosto tämän projektin "Releases"-sivulta.
+2.  Kopioi **vain tämä yksi tiedosto** Eclipsen skriptihakemistoon.
+    * *Kaikki tarvittavat kirjastot (kuten OxyPlot) on paketoitu tiedoston sisään.*
+    * Voit löytää oikean skriptihakemiston Eclipsestä valitsemalla **Tools > Scripts** ja klikkaamalla **Change Folder...** -painiketta.
 
 ### Suorittaminen
 
@@ -44,22 +42,33 @@ Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään (TPS) tarkoitettu ESA
     * **Vie yhteenveto CSV:** Tallentaa kaikki yhteenvetotaulukon tiedot CSV-tiedostoon.
     * **Tyhjennä ja aloita alusta:** Nollaa koko näkymän ja avaa uudelleen suunnitelman ja rakenteiden valintaikkunan.
 
+## Kehittäjälle (Kääntämisohjeet)
+
+Projekti on konfiguroitu niin, että se paketoi kaikki riippuvuudet (kuten OxyPlot) automaattisesti yhdeksi `EQD2_DVH.esapi.dll`-tiedostoksi käyttäen `Costura.Fody`-pakettia.
+
+Jotta voit kääntää projektin, sinun on hankittava Varianin ESAPI-kirjastot:
+
+1.  **Luo kansio:** Luo projektin `EQD2_DVH`-kansion sisään (samalle tasolle kuin `EQD2_DVH.csproj`-tiedosto) kansio nimeltä `ESAPI_Libs`.
+2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi (tai MyVarianista) seuraavat tiedostot tähän `ESAPI_Libs`-kansioon:
+    * `VMS.TPS.Common.Model.API.dll`
+    * `VMS.TPS.Common.Model.Types.dll`
+3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä ratkaisu (**Build > Build Solution**) `Release | x64` -asetuksilla.
+4.  Valmis `.dll`-tiedosto löytyy kansiosta `bin/x64/Release/`.
+
 ## Tunnetut ongelmat
 
-* **Ikkunan sulkemisvirhe:** Kun käyttäjä sulkee skripti-ikkunan, skripti antaa seuraavan virheilmoituksen:
-    `There was a problem while executing the script 'EQD2_DVH.esapi.dll'. Cannot set Visiblity or call Show, Showdialog, or WindowInteropHelper.EnsureHandle after a Window was closed.` Tämä ei kuitenkaan haittaa käyttöä.
-  
+* **Ikkunan sulkemisvirhe:** Kun käyttäjä sulkee skripti-ikkunan, skripti saattaa antaa virheilmoituksen: `Cannot set Visiblity or call Show, Showdialog, or WindowInteropHelper.EnsureHandle after a Window was closed.` Tämä ei kuitenkaan haittaa käyttöä.
+
 ## Tekninen toteutus
 
 * **Kieli ja alusta:** C# ja WPF (Windows Presentation Foundation) .NET Framework 4.7.2 -ympäristössä.
 * **Kirjastot:**
-    * **Varian ESAPI (Eclipse Scripting API):** Rajapinta, jonka kautta skripti kommunikoi Eclipse-tietokannan kanssa hakeakseen potilas-, suunnitelma- ja rakennetietoja.
-    * **OxyPlot:** Avoimen lähdekoodin kirjasto, jota käytetään DVH-käyrien piirtämiseen ja visualisointiin.
-* **Arkkitehtuuri:** Sovellus noudattaa MVVM (Model-View-ViewModel) -suunnittelumallia, mikä erottaa käyttöliittymän (View) sovelluslogiikasta (ViewModel).
-    * `MainViewModel.cs`: Sisältää pääikkunan toiminnallisuuden, kuten datan hallinnan ja komentojen toteutuksen.
-    * `DVHCalculator.cs`: Sisältää metodit EQD2-arvojen laskemiseksi sekä pistekohtaisesti että koko DVH-käyrälle.
- 
+    * **Varian ESAPI (Eclipse Scripting API):** Rajapinta, jonka kautta skripti kommunikoi Eclipse-tietokannan kanssa.
+    * **OxyPlot:** Avoimen lähdekoodin kirjasto, jota käytetään DVH-käyrien piirtämiseen.
+    * **Costura.Fody:** Työkalu, joka paketoi riippuvuuskirjastot (kuten OxyPlotin) suoraan lopullisen `.dll`-tiedoston sisään.
+
 ## Tekijät:
+
 * Juho Ala-Myllymäki ja Risto Hirvilammi Vaasan keskussairaala
 
 ## Lisenssi

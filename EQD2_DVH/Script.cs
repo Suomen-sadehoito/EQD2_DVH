@@ -1,49 +1,19 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using VMS.TPS.Common.Model.API;
-using System;
-using System.Reflection; // Tarvitaan Assembly-luokkaa varten
-using System.IO;         // Tarvitaan Path-luokkaa varten
+using System.Reflection;
+using System.IO;
+using System.Threading; // Tarvitaan tätä varten
 
 namespace VMS.TPS
 {
     public class Script
     {
-        // MUOKKAUS ALKAA TÄSTÄ
-        public Script()
-        {
-            // Rekisteröidään tapahtumankäsittelijä, joka auttaa löytämään puuttuvat .dll-tiedostot.
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResolveAssembly);
-        }
-
-        /// <summary>
-        /// Tämä metodi suoritetaan, kun .NET-ympäristö ei löydä jotain viitattua kirjastoa (assembly).
-        /// Koodi etsii puuttuvaa .dll-tiedostoa skriptin omasta suorituskansiosta ja lataa sen manuaalisesti.
-        /// </summary>
-        private static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
-        {
-            // Otetaan ladattavan assemblyn nimi (esim. "OxyPlot")
-            string assemblyName = new AssemblyName(args.Name).Name;
-
-            // Haetaan tämän hetkisen skriptin sijainti
-            string scriptPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Muodostetaan koko polku oletettuun .dll-tiedostoon
-            string dllPath = Path.Combine(scriptPath, assemblyName + ".dll");
-
-            // Jos tiedosto löytyy polusta, ladataan se
-            if (File.Exists(dllPath))
-            {
-                return Assembly.LoadFrom(dllPath);
-            }
-
-            // Jos tiedostoa ei löydy, palautetaan null, jolloin ohjelma jatkaa normaalia virheenkäsittelyä
-            return null;
-        }
-        // MUOKKAUS PÄÄTTYY TÄHÄN
-
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public void Execute(ScriptContext context, Window window)
+        // KORJAUS 1: Poistetaan 'Window window' -parametri.
+        // Tämä on nyt "ikkunaton" skripti Eclipsen näkökulmasta.
+        public void Execute(ScriptContext context)
         {
             if (context.Patient == null)
             {
@@ -53,17 +23,41 @@ namespace VMS.TPS
 
             try
             {
-                // Piilotetaan Eclipsen tarjoama tyhjä skripti-ikkuna.
-                window.Hide();
+                // KORJAUS 2: Käynnistetään koko WPF-sovellus omassa säikeessään.
+                Thread t = new Thread(() =>
+                {
+                    // Luodaan oma Application-instanssi, jotta emme ole
+                    // riippuvaisia Eclipsen ikkunanhallinnasta.
+                    var app = new System.Windows.Application();
 
-                // Luodaan uusi instanssi pääikkunastamme ja näytetään se.
-                // ShowDialog() pysäyttää suorituksen, kunnes ikkuna suljetaan.
-                var app = new EQD2_DVH.MainWindow(context);
-                app.ShowDialog();
+                    // 1. Näytä ENSIN VAIN valintaikkuna.
+                    var selectionWindow = new EQD2_DVH.SelectionWindow(context);
+                    // (WindowStartupLocation="CenterScreen" hoitaa keskityksen)
 
-                // Kun oma ikkuna suljetaan, suljetaan myös piilotettu Eclipsen ikkuna,
-                // jotta skripti päättyy siististi.
-                window.Close();
+                    if (selectionWindow.ShowDialog() == true)
+                    {
+                        // 2. JOS käyttäjä painoi "OK"...
+                        // ...luo ja näytä pääikkuna VALITUILLA TIEDOILLA.
+                        var mainWindow = new EQD2_DVH.MainWindow(
+                            selectionWindow.SelectedPlan,
+                            selectionWindow.SelectedStructures,
+                            context);
+
+                        mainWindow.ShowDialog();
+                    }
+
+                    // 3. Kun viimeinen ikkuna (Selection tai Main) suljetaan,
+                    // sulje oma Application-instanssimme siististi.
+                    app.Shutdown();
+                });
+
+                // KORJAUS 3: Aseta säie "Single-Threaded Apartment" -tilaan (pakollinen WPF:lle).
+                t.SetApartmentState(ApartmentState.STA);
+                t.Start();
+
+                // KORJAUS 4: Odota, että WPF-säie päättyy (käyttäjä sulkee ikkunan),
+                // ennen kuin Execute-metodi päättyy.
+                t.Join();
             }
             catch (Exception ex)
             {
