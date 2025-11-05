@@ -52,7 +52,7 @@ Jotta voit kääntää projektin, sinun on hankittava Varianin ESAPI-kirjastot:
 2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi seuraavat tiedostot tähän `ESAPI_Libs`-kansioon:
     * `VMS.TPS.Common.Model.API.dll`
     * `VMS.TPS.Common.Model.Types.dll`
-3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä ratkaisu (**Build > Build Solution**) `Release | x64` -asetuksilla.
+3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä "solution" (**Build > Build Solution**) `Release | x64` -asetuksilla.
 4.  Valmis `.dll`-tiedosto löytyy kansiosta `bin/x64/Release/`.
 
 ## Tunnetut ongelmat
