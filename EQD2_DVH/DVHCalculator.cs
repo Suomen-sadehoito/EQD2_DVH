@@ -5,7 +5,7 @@ using VMS.TPS.Common.Model.Types;
 namespace EQD2_DVH
 {
     /// <summary>
-    /// Tarjoaa staattisia metodeja EQD2-laskentaa varten.
+    /// Tarjoaa metodeja EQD2-laskentaa varten.
     /// </summary>
     public static class DVHCalculator
     {
