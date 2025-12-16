@@ -1,6 +1,6 @@
 # EQD2_DVH
 
-Tämä on Varian Eclipse -hoitosuunnittelujärjestelmään tarkoitettu ESAPI-skripti, joka laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushistogrammeja (DVH).
+Tämä skripti on tarkoitettu Varian Eclipse -hoitosuunnittelujärjestelmään. Skripti laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushistogrammeja (DVH).
 
 ## Ominaisuudet
 
