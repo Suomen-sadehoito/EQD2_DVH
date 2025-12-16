@@ -55,10 +55,6 @@ Jotta voit kääntää projektin, sinun on hankittava Varianin ESAPI-kirjastot:
 3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä "solution" (**Build > Build Solution**) `Release | x64` -asetuksilla.
 4.  Valmis `.dll`-tiedosto löytyy kansiosta `bin/x64/Release/`.
 
-## Tunnetut ongelmat
-
-* **Ikkunan sulkemisvirhe:** Kun käyttäjä sulkee skripti-ikkunan, skripti saattaa antaa virheilmoituksen: `Cannot set Visiblity or call Show, Showdialog, or WindowInteropHelper.EnsureHandle after a Window was closed.` Tämä ei kuitenkaan haittaa käyttöä.
-
 ## Tekninen toteutus
 
 * **Kieli ja alusta:** C# ja WPF (Windows Presentation Foundation) .NET Framework 4.7.2 -ympäristössä.
