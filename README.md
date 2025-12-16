@@ -48,8 +48,8 @@ Projekti on konfiguroitu niin, että se paketoi kaikki riippuvuudet (kuten OxyPl
 
 Jotta voit kääntää projektin, sinun on hankittava Varianin ESAPI-kirjastot:
 
-1.  **Luo kansio:** Luo projektin `EQD2_DVH`-kansion sisään (samalle tasolle kuin `EQD2_DVH.csproj`-tiedosto) kansio nimeltä `ESAPI_Libs`.
-2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi seuraavat tiedostot tähän `ESAPI_Libs`-kansioon:
+1.  **Luo kansio:** Luo projektin `EQD2_DVH`-kansion sisään (samalle tasolle kuin `EQD2_DVH.sln`-tiedosto) kansio nimeltä `ESAPI_LIBS`.
+2.  **Kopioi kirjastot:** Kopioi omalta Eclipse-työasemaltasi seuraavat tiedostot tähän `ESAPI_LIBS`-kansioon:
     * `VMS.TPS.Common.Model.API.dll`
     * `VMS.TPS.Common.Model.Types.dll`
 3.  **Käännä:** Avaa `EQD2_DVH.sln` Visual Studiossa. NuGet-pakettien (kuten OxyPlot ja Costura.Fody) pitäisi palautua automaattisesti. Käännä "solution" (**Build > Build Solution**) `Release | x64` -asetuksilla.
