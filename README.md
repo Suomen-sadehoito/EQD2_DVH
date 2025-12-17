@@ -1,6 +1,6 @@
 # EQD2_DVH
 
-Skripti laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushistogrammeja (DVH). Skripti on tarkoitettu Varian Eclipse -hoitosuunnittelujärjestelmään. 
+Skripti laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushistogrammeja (DVH).
 
 ## Ominaisuudet
 
