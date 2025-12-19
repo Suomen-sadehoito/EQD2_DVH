@@ -5,12 +5,12 @@ Skripti laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushis
 ## Ominaisuudet
 
 * **DVH-käyrien visualisointi:** Piirtää sekä alkuperäisen annoksen DVH-käyrän että lasketun EQD2 DVH-käyrän samaan kuvaajaan.
-* **Muokattavat α/β-arvot:** Käyttäjä voi asettaa ja muokata kunkin rakenteen alfa/beeta-suhdetta. Oletusarvot asetetaan automaattisesti yleisimpien kudostyyppien mukaan.
-* **Yksityiskohtainen yhteenveto:** Tarjoaa taulukon, jossa näkyvät tärkeimmät DVH-parametrit (Dmax, Dmean, Dmin, tilavuus) sekä alkuperäiselle että EQD2-annokselle.
+* **Muokattavat α/β-arvot:** Käyttäjä voi asettaa ja muokata kunkin rakenteen alfa/beeta-suhdetta.
+* **Yhteenveto taulukko:** Tulostaa taulukon, jossa näkyvät tärkeimmät DVH-parametrit (Dmax, Dmean, Dmin, tilavuus) sekä alkuperäiselle että EQD2-annokselle.
 * **Kaksi laskentatapaa D.mean-arvolle:**
     * **Yksinkertainen (Oletus):** Muuntaa alkuperäisen D.mean annoksen suoraaan EQD2-arvoksi.
     * **Differentiaali-DVH:** EQD2 lasketaan jakamalla alkuperäinen DVH "bineihin", joista lasketaan painotettu keskiarvo. Hyötyä eniten epätasaisella annosjakaumalla.
-* **CSV-vienti:** Kaikki yhteenvetotiedot voidaan viedä CSV-tiedostoon.
+* **CSV-vienti:** Yhteenvetotiedot voidaan viedä CSV-tiedostoon.
 
 ## Käyttöohjeet
 
