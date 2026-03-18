@@ -1,4 +1,5 @@
 # EQD2_DVH
+# TOIMINNALLISUUS SIIRRETTY UUTEEN ESAPI_EQD2Viewer SKRIPTIIN
 
 Skripti laskee ja visualisoi 2 Gy:n ekvivalenttiannoksen (EQD2) annostilavuushistogrammeja (DVH).
 
